@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liske</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='reset.css')}}"/>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <!--Application Name-->
+    <div class="title-bar">
+        <h1>Liske</h1>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!--Liske Navbar-->
+        <nav class="side-bar">
+            <ul>
+            {% for currentLiske in liske %}
+                <li>{{ currentLiske.liskeName }}</li>
+            {% endfor %}
+            </ul>
+        </nav>
+        <!--End Liske Navbar-->
+
+        <!--Current Liske list-->
+        <div class="center-container">
+            <!-- Liske box -->
+            <div>
+                {% set selectedLiske = liske[0] %}
+                <!-- Selected Liske title -->
+                <h2 class="title-h2">{{ selectedLiske.liskeName }}</h2>
+                <!-- Liske list -->
+                <div  class="liske-box">
+                    {% for currentTask in selectedLiske.liske %}
+                        <p>{{ currentTask.title }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- End Liske box-->
+        </div>
+        <!--End current Liske list-->
+    </div>
+    <!-- End Main Container -->
+</body>
+</html>
