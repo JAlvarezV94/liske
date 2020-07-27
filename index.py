@@ -11,7 +11,7 @@ def hello_world():
     taskList1 = [
         task.task('Titulo 1', 1),
         task.task('Titulo 2', 3),
-        task.task('Titulo 3', 1)
+        task.task('Titulo 3', 2)
     ]
     liske1 = liske.liske('home tasks', taskList1)
 

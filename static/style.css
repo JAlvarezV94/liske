@@ -1,57 +1,57 @@
-/* APP COLORS
-$prussian-blue: #003049ff;
-$maximum-red: #d62828ff;
-$orange: #f77f00ff;
-$maximum-yellow-red: #fcbf49ff;
-$lemon-meringue: #eae2b7ff;
-*/
+/******************************************
+**************** COLORS *******************
+*******************************************/
 
-.title-bar{
-    font-size: 30px;
-    padding: 15px;
-    background-color: #003049;
-    color: #e1e1e1;
-    position: fixed;
-    width: 100%;
-    margin: 0;
-    float: left;
+
+/******************************************
+**************** COMMON *******************
+*******************************************/
+
+.liske-h2 {
+    font-size: 24px;
 }
 
-.main-container {
+.liske-priority{
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.liske-priority-high {
+    background-color: #f75050;
+}
+
+.liske-priority-medium {
+    background-color: #f7d550;
+}
+
+
+.liske-priority-low {
+    background-color: #84f750;
+}
+
+
+/******************************************
+****************** BARS *******************
+*******************************************/
+
+.menu-button{
+    display: none;
+}
+
+/******************************************
+************** CONTAINERS *****************
+*******************************************/
+.liske-task{
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid;
     display: flex;
     flex-direction: row;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #eae2b7;
-}
-
-.side-bar{
-    background: #d62828;
-    font-size: 18px;
-    padding: 30px;
-    display: flex;
     align-items: center;
 }
 
-.center-container{
-    align-self: center;
-    margin: auto;
-    min-width: 500px;
-    height: 500px;
-    background-color: #fcbf49;
-    border: 1px solid #f77f00;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.title-h2 {
-    font-size: 25px;
-    text-decoration: underline;
-}
-
-.liske-box {
-    width: 100%;
-    height: 100%;
-    margin-top: 20px;
+.liske-task:hover {
+    padding: 15px;
+    background-color: #82bcfb;
 }

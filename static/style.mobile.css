@@ -1,0 +1,30 @@
+@media (max-width: 768px){
+    .title-bar{
+        font-size: 30px;
+        padding: 10px;
+        border-bottom: 1px solid;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .menu-button {
+        display: block;
+        background: none;
+        border: 1px solid;
+        margin-right: 10px;
+    }
+
+    .main-container{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .side-bar {
+        display: none;
+    }
+
+    .center-container{
+        width: 100%;
+        padding: 15px;
+    }
+}

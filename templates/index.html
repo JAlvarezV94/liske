@@ -6,10 +6,14 @@
     <title>Liske</title>
     <link rel="stylesheet" href="{{url_for('static', filename='reset.css')}}"/>
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.mobile.css')}}">
 </head>
 <body>
     <!--Application Name-->
     <div class="title-bar">
+        <button class="menu-button">
+            ->
+        </button>
         <h1>Liske</h1>
     </div>
 
@@ -31,11 +35,22 @@
             <div>
                 {% set selectedLiske = liske[0] %}
                 <!-- Selected Liske title -->
-                <h2 class="title-h2">{{ selectedLiske.liskeName }}</h2>
+                <h2 class="liske-h2">{{ selectedLiske.liskeName }}</h2>
                 <!-- Liske list -->
                 <div  class="liske-box">
                     {% for currentTask in selectedLiske.liske %}
-                        <p>{{ currentTask.title }}</p>
+                        <div class="liske-task">
+                            {% if currentTask.priority == 1 %}
+                                {% set currentPriority = "liske-priority-high" %}
+                            {% elif currentTask.priority == 2 %}
+                                {% set currentPriority = "liske-priority-medium" %}
+                            {% elif currentTask.priority == 3 %}
+                                {% set currentPriority = "liske-priority-low" %}
+                            {% endif %}
+                            
+                            <div class="liske-priority {{ currentPriority }}"></div>
+                            <p>{{ currentTask.title }}</p>
+                        </div>
                     {% endfor %}
                 </div>
             </div>
