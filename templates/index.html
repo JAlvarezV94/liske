@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liske</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='reset.css')}}"/>
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='style.mobile.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/reset.css')}}"/>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.mobile.css')}}">
+    <script type="text/javascript" src="{{url_for('static', filename='js/index.js')}}"></script>
 </head>
 <body>
     <!--Application Name-->
     <div class="title-bar">
-        <button class="menu-button">
-            ->
+        <button id="menuButton" class="menu-button" onclick="onMenuButtonClick()">
+            X
         </button>
         <h1>Liske</h1>
     </div>
@@ -20,10 +21,14 @@
     <!-- Main Container -->
     <div class="main-container">
         <!--Liske Navbar-->
-        <nav class="side-bar">
+        <nav id="liskeNavbar" class="side-bar-display">
             <ul>
             {% for currentLiske in liske %}
-                <li>{{ currentLiske.liskeName }}</li>
+                <li>
+                    <button type="button" class="side-menu-button">
+                        {{ currentLiske.liskeName }}
+                    </button>
+                </li>
             {% endfor %}
             </ul>
         </nav>
