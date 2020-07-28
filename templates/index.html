@@ -13,7 +13,7 @@
     <!--Application Name-->
     <div class="title-bar">
         <button id="menuButton" class="menu-button" onclick="onMenuButtonClick()">
-            X
+            >
         </button>
         <h1>Liske</h1>
     </div>
@@ -21,7 +21,7 @@
     <!-- Main Container -->
     <div class="main-container">
         <!--Liske Navbar-->
-        <nav id="liskeNavbar" class="side-bar-display">
+        <nav id="liskeNavbar" class="side-bar">
             <ul>
             {% for currentLiske in liske %}
                 <li>
@@ -55,6 +55,9 @@
                             
                             <div class="liske-priority {{ currentPriority }}"></div>
                             <p>{{ currentTask.title }}</p>
+                            <button>
+                                X
+                            </button>
                         </div>
                     {% endfor %}
                 </div>

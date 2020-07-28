@@ -3,7 +3,7 @@ const NAVBAR_WIDTH = 80;
 function onMenuButtonClick(){
     var navbar = document.getElementById("liskeNavbar");
     var menuButton = document.getElementById("menuButton");
-    var hide = navbar.style.left == "-81%" ? false : true;
+    var hide = navbar.style.left == "-81%" || navbar.style.left == "" ? false : true;
 
     // Hide navbar on the left
     if(hide){

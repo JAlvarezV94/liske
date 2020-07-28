@@ -55,3 +55,11 @@
     padding: 15px;
     background-color: #82bcfb;
 }
+
+.liske-task > button {
+    float: right;
+    position: fixed;
+    right: 30px;
+    background: none;
+    border: none;
+}

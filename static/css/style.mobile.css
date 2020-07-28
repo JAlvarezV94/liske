@@ -20,24 +20,20 @@
     }
 
     .side-bar {
-        display: none;
-    }
-
-    .side-bar-display {
         display: flex;
         position: fixed;
         height: 100%;
         background-color: #fff;
         border-right: 1px solid;
         width: 80%;
-        left: 0%;
+        left: -81%;
     }
 
-    .side-bar-display > ul {
+    .side-bar> ul {
         width: 100%;
     }
 
-    .side-bar-display > ul > li {
+    .side-bar > ul > li {
         width: 100%;
     }
 
