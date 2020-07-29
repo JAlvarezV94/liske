@@ -7,6 +7,14 @@
 **************** COMMON *******************
 *******************************************/
 
+.liske-active{
+    display: block;
+}
+
+.liske-inactive{
+    display: none;
+}
+
 .liske-h2 {
     font-size: 24px;
 }

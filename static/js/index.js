@@ -1,5 +1,4 @@
 const NAVBAR_WIDTH = 80;
-var listToShow = 0;
 
 function onMenuButtonClick(){
     var navbar = document.getElementById("liskeNavbar");
@@ -36,12 +35,24 @@ function onMenuButtonClick(){
 }
 
 function onNavButtonClick(clickedButton){
-    debugger;
     var currenId = clickedButton.dataset["id"];
 
     if(!isNaN(currenId)){
         currentId = parseInt(currenId);
         
-        
+        // Hide the old liske
+        var activeLiskeId = document.getElementsByClassName("liske-active")[0].id;
+        var activeLiske = document.getElementById(activeLiskeId);
+        activeLiske.classList.remove("liske-active")
+        activeLiske.classList.add("liske-inactive")
+
+
+        // Show the new liske
+        var currentLiske = document.getElementById(currenId);
+        currentLiske.classList.remove("liske-inactive");
+        currentLiske.classList.add("liske-active");
+
+        // Hide the bar
+        this.onMenuButtonClick();
     }
 }

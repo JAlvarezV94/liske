@@ -7,7 +7,7 @@ import models.task as task
 app = Flask("Liske")
 
 @app.route("/")
-def index():
+def index(selectedLiske = None):
     
     liskeList = __debug_liske_list()
 

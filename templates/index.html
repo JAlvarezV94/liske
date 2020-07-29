@@ -36,14 +36,15 @@
 
         <!--Current Liske list-->
         <div class="center-container">
+        {% set selectedLiske = liske[0] %}
+        {% for currentLiske in liske %}
             <!-- Liske box -->
-            <div>
-                {% set selectedLiske = liske[0] %}
+            <div id="{{ currentLiske.id }}" class="{{ 'liske-active' if currentLiske.id == 1  else 'liske-inactive' }}">
                 <!-- Selected Liske title -->
-                <h2 class="liske-h2">{{ selectedLiske.liskeName }}</h2>
+                <h2 class="liske-h2">{{ currentLiske.liskeName }}</h2>
                 <!-- Liske list -->
                 <div  class="liske-box">
-                    {% for currentTask in selectedLiske.liske %}
+                    {% for currentTask in currentLiske.liske %}
                         <div class="liske-task">
                             {% if currentTask.priority == 1 %}
                                 {% set currentPriority = "liske-priority-high" %}
@@ -63,6 +64,7 @@
                 </div>
             </div>
             <!-- End Liske box-->
+        {% endfor %}
         </div>
         <!--End current Liske list-->
     </div>
