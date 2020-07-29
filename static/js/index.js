@@ -1,4 +1,5 @@
 const NAVBAR_WIDTH = 80;
+var listToShow = 0;
 
 function onMenuButtonClick(){
     var navbar = document.getElementById("liskeNavbar");
@@ -32,4 +33,15 @@ function onMenuButtonClick(){
 
     //Switch the button text
     menuButton.innerText = hide ? ">" : "X";
+}
+
+function onNavButtonClick(clickedButton){
+    debugger;
+    var currenId = clickedButton.dataset["id"];
+
+    if(!isNaN(currenId)){
+        currentId = parseInt(currenId);
+        
+        
+    }
 }
