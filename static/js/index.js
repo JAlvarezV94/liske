@@ -56,3 +56,18 @@ function onNavButtonClick(clickedButton){
         this.onMenuButtonClick();
     }
 }
+
+function removeCurrentItem(id){
+    var url = "http://127.0.0.1:5000/removetask/" + id;
+
+    var config = {
+        method: "DELETE"
+    };
+
+    fetch(url, config)
+    .then(function(response){
+    })
+    .catch(function(error){
+        debugger;
+    })
+}
