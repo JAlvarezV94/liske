@@ -3,16 +3,17 @@ from flask import render_template
 
 import models.liske as liske
 import models.task as task
+import dal.liske_repository as liske_repository
 
 app = Flask("Liske")
 liskeList = []
 
 @app.route("/")
 def index(selectedLiske = None):
+    liske = []
+    liske = liske_repository.get_liske_list()
     
-    liskeList = __debug_liske_list()
-
-    return render_template("index.html", liske=liskeList)
+    return render_template("index.html", liske=liske)
 
 
 @app.route("/removetask/<id>", methods=["DELETE"])

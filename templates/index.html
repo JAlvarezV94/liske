@@ -23,48 +23,59 @@
         <!--Liske Navbar-->
         <nav id="liskeNavbar" class="side-bar">
             <ul>
-            {% for currentLiske in liske %}
-                <li>
-                    <button data-id="{{currentLiske.id}}" type="button" class="side-menu-button" onclick="onNavButtonClick(this)">
-                        {{ currentLiske.liskeName }}
-                    </button>
-                </li>
-            {% endfor %}
+            {% if liske|length > 0 %}
+                {% for currentLiske in liske %}
+                    <li>
+                        <button data-id="{{currentLiske.id}}" type="button" class="side-menu-button" onclick="onNavButtonClick(this)">
+                            {{ currentLiske.liskeName }}
+                        </button>
+                    </li>
+                {% endfor %}
+            {% else %}
+                    <h2> There is no Liskes here :(</h2>
+            {% endif %}
             </ul>
+            <button class="add-liske-btn">
+                +
+            </button>
         </nav>
         <!--End Liske Navbar-->
 
         <!--Current Liske list-->
         <div class="center-container">
-        {% set selectedLiske = liske[0] %}
-        {% for currentLiske in liske %}
-            <!-- Liske box -->
-            <div id="{{ currentLiske.id }}" class="{{ 'liske-active' if currentLiske.id == 1  else 'liske-inactive' }}">
-                <!-- Selected Liske title -->
-                <h2 class="liske-h2">{{ currentLiske.liskeName }}</h2>
-                <!-- Liske list -->
-                <div  class="liske-box">
-                    {% for currentTask in currentLiske.liske %}
-                        <div class="liske-task">
-                            {% if currentTask.priority == 1 %}
-                                {% set currentPriority = "liske-priority-high" %}
-                            {% elif currentTask.priority == 2 %}
-                                {% set currentPriority = "liske-priority-medium" %}
-                            {% elif currentTask.priority == 3 %}
-                                {% set currentPriority = "liske-priority-low" %}
-                            {% endif %}
-                            
-                            <div class="liske-priority {{ currentPriority }}"></div>
-                            <p>{{ currentTask.title }}</p>
-                            <button onclick="removeCurrentItem({{currentTask.id}})">
-                                X
-                            </button>
-                        </div>
-                    {% endfor %}
+        {% if liske|length > 0%}
+            {% set selectedLiske = liske[0] %}
+            {% for currentLiske in liske %}
+                <!-- Liske box -->
+                <div id="{{ currentLiske.id }}" class="{{ 'liske-active' if currentLiske.id == 1  else 'liske-inactive' }}">
+                    <!-- Selected Liske title -->
+                    <h2 class="liske-h2">{{ currentLiske.liskeName }}</h2>
+                    <!-- Liske list -->
+                    <div  class="liske-box">
+                        {% for currentTask in currentLiske.liske %}
+                            <div class="liske-task">
+                                {% if currentTask.priority == 1 %}
+                                    {% set currentPriority = "liske-priority-high" %}
+                                {% elif currentTask.priority == 2 %}
+                                    {% set currentPriority = "liske-priority-medium" %}
+                                {% elif currentTask.priority == 3 %}
+                                    {% set currentPriority = "liske-priority-low" %}
+                                {% endif %}
+                                
+                                <div class="liske-priority {{ currentPriority }}"></div>
+                                <p>{{ currentTask.title }}</p>
+                                <button onclick="removeCurrentItem({{currentTask.id}})">
+                                    X
+                                </button>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
-            <!-- End Liske box-->
-        {% endfor %}
+                <!-- End Liske box-->
+            {% endfor %}
+        {% else %}
+            <h2> There is no tasks. </h2>
+        {% endif %}
         </div>
         <!--End current Liske list-->
     </div>
