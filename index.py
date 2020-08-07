@@ -1,9 +1,10 @@
 from flask import Flask
-from flask import render_template
+from flask import render_template, redirect, url_for
 
 import models.liske as liske
 import models.task as task
 import dal.liske_repository as liske_repository
+import dal.task_repository as task_repository
 
 app = Flask("Liske")
 liskeList = []
@@ -18,7 +19,16 @@ def index(selectedLiske = None):
 
 @app.route("/removetask/<id>", methods=["DELETE"])
 def remove_task(id):
-    return "remove"
+    is_deleted = False
+
+    if id != None and str(id).isnumeric():
+        is_deleted = task_repository.remove_task(id)
+
+    print(is_deleted)
+    if is_deleted:
+        return redirect(url_for('index'))
+    else:
+        return str(is_deleted)
 
 
 def __debug_liske_list():

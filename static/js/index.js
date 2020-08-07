@@ -57,8 +57,9 @@ function onNavButtonClick(clickedButton){
     }
 }
 
-function removeCurrentItem(id){
-    var url = "http://127.0.0.1:5000/removetask/" + id;
+function removeCurrentItem(clickedButton){
+    var currenId = clickedButton.dataset["id"];
+    var url = "http://127.0.0.1:5000/removetask/" + currenId;
 
     var config = {
         method: "DELETE"
@@ -66,6 +67,7 @@ function removeCurrentItem(id){
 
     fetch(url, config)
     .then(function(response){
+        debugger;
     })
     .catch(function(error){
         debugger;
