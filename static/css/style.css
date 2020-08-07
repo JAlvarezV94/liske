@@ -59,10 +59,10 @@
     align-items: center;
 }
 
-.liske-task:hover {
+/* .liske-task:hover {
     padding: 15px;
     background-color: #82bcfb;
-}
+} */
 
 .liske-task > button {
     float: right;

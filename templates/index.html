@@ -43,39 +43,46 @@
 
         <!--Current Liske list-->
         <div class="center-container">
-        {% if liske|length > 0%}
-            {% set selectedLiske = liske[0] %}
-            {% for currentLiske in liske %}
-                <!-- Liske box -->
-                <div id="{{ currentLiske.id }}" class="{{ 'liske-active' if currentLiske.id == 1  else 'liske-inactive' }}">
-                    <!-- Selected Liske title -->
-                    <h2 class="liske-h2">{{ currentLiske.liskeName }}</h2>
-                    <!-- Liske list -->
-                    <div  class="liske-box">
-                        {% for currentTask in currentLiske.liske %}
-                            <div class="liske-task">
-                                {% if currentTask.priority == 1 %}
-                                    {% set currentPriority = "liske-priority-high" %}
-                                {% elif currentTask.priority == 2 %}
-                                    {% set currentPriority = "liske-priority-medium" %}
-                                {% elif currentTask.priority == 3 %}
-                                    {% set currentPriority = "liske-priority-low" %}
-                                {% endif %}
-                                
-                                <div class="liske-priority {{ currentPriority }}"></div>
-                                <p>{{ currentTask.title }}</p>
-                                <button onclick="removeCurrentItem({{currentTask.id}})">
-                                    X
-                                </button>
+            <div>
+                {% if liske|length > 0%}
+                    {% set selectedLiske = liske[0] %}
+                    {% for currentLiske in liske %}
+                        <!-- Liske box -->
+                        <div id="{{ currentLiske.id }}" class="{{ 'liske-active' if currentLiske.id == 1  else 'liske-inactive' }}">
+                            <!-- Selected Liske title -->
+                            <h2 class="liske-h2">{{ currentLiske.liskeName }}</h2>
+                            <!-- Liske list -->
+                            <div  class="liske-box">
+                                {% for currentTask in currentLiske.liske %}
+                                    <div class="liske-task">
+                                        {% if currentTask.priority == 1 %}
+                                            {% set currentPriority = "liske-priority-high" %}
+                                        {% elif currentTask.priority == 2 %}
+                                            {% set currentPriority = "liske-priority-medium" %}
+                                        {% elif currentTask.priority == 3 %}
+                                            {% set currentPriority = "liske-priority-low" %}
+                                        {% endif %}
+                                        
+                                        <div class="liske-priority {{ currentPriority }}"></div>
+                                        <p>{{ currentTask.title }}</p>
+                                        <button data-id="{{currentTask.id}}" onclick="removeCurrentItem(this)">
+                                            X
+                                        </button>
+                                    </div>
+                                {% endfor %}
                             </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <!-- End Liske box-->
-            {% endfor %}
-        {% else %}
-            <h2> There is no tasks. </h2>
-        {% endif %}
+                        </div>
+                        <!-- End Liske box-->
+                    {% endfor %}
+                {% else %}
+                    <h2> There is no tasks. </h2>
+                {% endif %}
+            </div>
+        
+            <!--Button add new task -->
+            <button>
+                Add new task
+            </button>
         </div>
         <!--End current Liske list-->
     </div>
