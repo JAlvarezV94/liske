@@ -6,7 +6,7 @@
     <title>Liske</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/reset.css')}}"/>
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.mobile.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.mobileq.css')}}">
     <script type="text/javascript" src="{{url_for('static', filename='js/index.js')}}"></script>
 </head>
 <body>
@@ -18,6 +18,7 @@
         <h1>Liske</h1>
     </div>
 
+    {% set liske = response[0] %}
     <!-- Main Container -->
     <div class="main-container">
         <!--Liske Navbar-->
@@ -45,10 +46,10 @@
         <div class="center-container">
             <div>
                 {% if liske|length > 0%}
-                {% set selectedLiske = liske[0] %}
+                {% set selectedLiske = response[1] %}
                 {% for currentLiske in liske %}
                     <!-- Liske box -->
-                    <div id="{{ currentLiske.id }}" class="{{ 'liske-active' if currentLiske.id == 1  else 'liske-inactive' }}">
+                    <div id="{{ currentLiske.id }}" class="{{ 'liske-active' if currentLiske.id|int == selectedLiske|int  else 'liske-inactive' }}">
                         <!-- Selected Liske title -->
                         <h2 class="liske-h2">{{ currentLiske.liskeName }}</h2>
                         <!-- Liske list -->
@@ -80,12 +81,35 @@
             </div>
         
             <!--Button add new task -->
-            <button class="new-task">
+            <button class="new-task" onclick="showAddTaskForm()">
                 Add new task
             </button>
         </div>
         <!--End current Liske list-->
     </div>
     <!-- End Main Container -->
+
+    <!--Modal zone-->
+    <!-- courtine for background -->
+    <div id="modalCourtine" class="modal-courtine"></div>
+    <!-- New Task Form -->
+    <div id="newTaskModal" class="new-task-modal">
+        <button onclick="hideAddTaskForm()">x</button>
+        <h3> New Task </h3>
+        <form method="POST" action="{{ url_for('add_task') }}">
+            <input readonly="true" id="liskeId" name="liskeId" value="{{selectedLiske.id}}" class="hiden"/>
+            <label for="taskName">Task Name</label>
+            <input type="text" id="taskName" name="taskName"/>
+            <label for="taskPriority">Task Proprity</label>
+            <select id="taskPriority" name="priority" >
+                <option value="3">Low</option>
+                <option value="2">Medium</option>
+                <option value="1">High</option>
+            </select>
+
+            <input type="submit" value="create"/>
+        </form>
+    </div>
+    <!--End Modal zone-->
 </body>
 </html>

@@ -48,9 +48,11 @@ function onNavButtonClick(clickedButton){
 
 
         // Show the new liske
+        var liskeId = document.getElementById("liskeId");
         var currentLiske = document.getElementById(currenId);
         currentLiske.classList.remove("liske-inactive");
         currentLiske.classList.add("liske-active");
+        liskeId.value = currentId;
 
         // Hide the bar
         this.onMenuButtonClick();
@@ -67,9 +69,26 @@ function removeCurrentItem(clickedButton){
 
     fetch(url, config)
     .then(function(response){
-        debugger;
+        var activeLiskeId = document.getElementsByClassName("liske-active")[0].id;
+        window.location.href = "http://127.0.0.1:5000/liske/" + activeLiskeId;
     })
     .catch(function(error){
         debugger;
     })
+}
+
+function showAddTaskForm(){
+    var courtine = document.getElementById("modalCourtine");
+    var addTaskModal = document.getElementById("newTaskModal");
+
+    courtine.style.display = "block";
+    addTaskModal.style.display = "flex";
+}
+
+function hideAddTaskForm(){
+    var courtine = document.getElementById("modalCourtine");
+    var addTaskModal = document.getElementById("newTaskModal");
+
+    courtine.style.display = "none";
+    addTaskModal.style.display = "none";
 }

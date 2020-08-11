@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, request
 
 import models.liske as liske
 import models.task as task
@@ -10,11 +10,18 @@ app = Flask("Liske")
 liskeList = []
 
 @app.route("/")
-def index(selectedLiske = None):
+def index():
+    #TODO: Validar la sesión del usuario
+    return redirect(url_for("show_list", selectedLiske = 1))
+
+@app.route("/liske/<selectedLiske>")
+def show_list(selectedLiske = 1):
     liske = []
     liske = liske_repository.get_liske_list()
     
-    return render_template("index.html", liske=liske)
+    print(selectedLiske)
+
+    return render_template("index.html", response=(liske, selectedLiske))
 
 
 @app.route("/removetask/<id>", methods=["DELETE"])
@@ -24,11 +31,18 @@ def remove_task(id):
     if id != None and str(id).isnumeric():
         is_deleted = task_repository.remove_task(id)
 
-    print(is_deleted)
-    if is_deleted:
-        return redirect(url_for('index'))
-    else:
-        return str(is_deleted)
+    return str(is_deleted)
+
+@app.route("/addtask", methods=["POST"])
+def add_task():
+    task_liske = request.form["liskeId"]
+    task_name = request.form["taskName"]
+    task_priority = request.form.get("priority")
+
+    task_repository.add_task(task_liske, task_name, task_priority)
+
+    print(task_liske)
+    return redirect(url_for('show_list', selectedLiske = task_liske))
 
 
 def __debug_liske_list():
