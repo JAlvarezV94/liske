@@ -77,17 +77,17 @@ function removeCurrentItem(clickedButton){
     })
 }
 
-function showAddTaskForm(){
+function showAddTaskForm(modalId){
     var courtine = document.getElementById("modalCourtine");
-    var addTaskModal = document.getElementById("newTaskModal");
+    var addTaskModal = document.getElementById(modalId);
 
     courtine.style.display = "block";
     addTaskModal.style.display = "flex";
 }
 
-function hideAddTaskForm(){
+function hideAddTaskForm(modalId){
     var courtine = document.getElementById("modalCourtine");
-    var addTaskModal = document.getElementById("newTaskModal");
+    var addTaskModal = document.getElementById(modalId);
 
     courtine.style.display = "none";
     addTaskModal.style.display = "none";

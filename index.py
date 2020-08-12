@@ -18,8 +18,6 @@ def index():
 def show_list(selectedLiske = 1):
     liske = []
     liske = liske_repository.get_liske_list()
-    
-    print(selectedLiske)
 
     return render_template("index.html", response=(liske, selectedLiske))
 
@@ -41,9 +39,16 @@ def add_task():
 
     task_repository.add_task(task_liske, task_name, task_priority)
 
-    print(task_liske)
     return redirect(url_for('show_list', selectedLiske = task_liske))
 
+@app.route("/addliske", methods=["POST"])
+def add_liske():
+    selected_liske = request.form["currentLiske"]
+    liske_name = request.form["liskeName"]
+
+    liske_repository.add_liske(liske_name)
+
+    return redirect(url_for('show_list', selectedLiske = selected_liske))
 
 def __debug_liske_list():
     taskList1 = [

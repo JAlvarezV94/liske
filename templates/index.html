@@ -6,7 +6,7 @@
     <title>Liske</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/reset.css')}}"/>
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.mobileq.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.mobile.css')}}">
     <script type="text/javascript" src="{{url_for('static', filename='js/index.js')}}"></script>
 </head>
 <body>
@@ -36,7 +36,7 @@
                     <h2> There is no Liskes here :(</h2>
             {% endif %}
             </ul>
-            <button class="add-liske-btn">
+            <button class="add-liske-btn" onclick="showAddTaskForm('newLiskeModal')">
                 +
             </button>
         </nav>
@@ -81,7 +81,7 @@
             </div>
         
             <!--Button add new task -->
-            <button class="new-task" onclick="showAddTaskForm()">
+            <button class="new-task" onclick="showAddTaskForm('newTaskModal')">
                 Add new task
             </button>
         </div>
@@ -92,12 +92,13 @@
     <!--Modal zone-->
     <!-- courtine for background -->
     <div id="modalCourtine" class="modal-courtine"></div>
+    
     <!-- New Task Form -->
-    <div id="newTaskModal" class="new-task-modal">
-        <button onclick="hideAddTaskForm()">x</button>
+    <div id="newTaskModal" class="liske-modal">
+        <button onclick="hideAddTaskForm('newTaskModal')">x</button>
         <h3> New Task </h3>
         <form method="POST" action="{{ url_for('add_task') }}">
-            <input readonly="true" id="liskeId" name="liskeId" value="{{selectedLiske.id}}" class="hiden"/>
+            <input readonly="true" id="liskeId" name="liskeId" value="{{response[1]}}" class="hiden"/>
             <label for="taskName">Task Name</label>
             <input type="text" id="taskName" name="taskName"/>
             <label for="taskPriority">Task Proprity</label>
@@ -110,6 +111,20 @@
             <input type="submit" value="create"/>
         </form>
     </div>
+    <!-- End new Task Form -->
+    <!-- New Liske zone -->
+    <div id="newLiskeModal" class="liske-modal">
+        <button onclick="hideAddTaskForm('newLiskeModal')">x</button>
+        <h3>New Liske</h3>
+        <form method="POST" action="{{ url_for('add_liske') }}">
+            <input readonly="true" id="currentLiske" name="currentLiske" value="{{response[1]}}" class="hiden"/>
+            <label for="liskeName">Liske name</label>
+            <input type="text" id="liskeName" name="liskeName"/>
+
+            <input type="submit" value="create"/>
+        </form>
+    </div>
+    <!-- End new Liske zone -->
     <!--End Modal zone-->
 </body>
 </html>

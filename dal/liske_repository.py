@@ -3,6 +3,10 @@ import models.liske as m_liske
 import models.task as m_task
 
 
+def add_liske(liske_name):
+    print("Nombre del liske" + liske_name)
+    db.void_query_db("insert into liske (liske_name) values (?)", (liske_name, ))
+
 def get_liske_by_id(id):
     selected_liske = None
 
