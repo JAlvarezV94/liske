@@ -38,24 +38,7 @@ function onNavButtonClick(clickedButton){
     var currenId = clickedButton.dataset["id"];
 
     if(!isNaN(currenId)){
-        currentId = parseInt(currenId);
-        
-        // Hide the old liske
-        var activeLiskeId = document.getElementsByClassName("liske-active")[0].id;
-        var activeLiske = document.getElementById(activeLiskeId);
-        activeLiske.classList.remove("liske-active")
-        activeLiske.classList.add("liske-inactive")
-
-
-        // Show the new liske
-        var liskeId = document.getElementById("liskeId");
-        var currentLiske = document.getElementById(currenId);
-        currentLiske.classList.remove("liske-inactive");
-        currentLiske.classList.add("liske-active");
-        liskeId.value = currentId;
-
-        // Hide the bar
-        this.onMenuButtonClick();
+        window.location.replace("http://127.0.0.1:5000/liske/" + currenId);
     }
 }
 

@@ -7,5 +7,5 @@ def add_task(liske, name, priority):
 
 def remove_task(id):
     liske_deleted = False
-    liske_deleted = db.void_query_db("delete from task where id_task = ?", (id,))
+    liske_deleted = db.void_query_db("delete from task where task_id = ?", (id,))
     return liske_deleted

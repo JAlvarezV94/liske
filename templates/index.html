@@ -45,16 +45,16 @@
         <!--Current Liske list-->
         <div class="center-container">
             <div>
-                {% if liske|length > 0%}
-                {% set selectedLiske = response[1] %}
-                {% for currentLiske in liske %}
+                {% if liske|length > 0 and response[1] is not none %}
+                    {% set selectedLiske = response[1] %}
+                    
                     <!-- Liske box -->
-                    <div id="{{ currentLiske.id }}" class="{{ 'liske-active' if currentLiske.id|int == selectedLiske|int  else 'liske-inactive' }}">
+                    <div id="{{ selectedLiske.id }}" class="liske-active">
                         <!-- Selected Liske title -->
-                        <h2 class="liske-h2">{{ currentLiske.liskeName }}</h2>
+                        <h2 class="liske-h2">{{ selectedLiske.liskeName }}</h2>
                         <!-- Liske list -->
                         <div  class="liske-box">
-                            {% for currentTask in currentLiske.liske %}
+                            {% for currentTask in selectedLiske.liske %}
                                 <div class="liske-task">
                                     {% if currentTask.priority == 1 %}
                                         {% set currentPriority = "liske-priority-high" %}
@@ -73,8 +73,6 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <!-- End Liske box-->
-                {% endfor %}
                 {% else %}
                     <h2> There is no tasks. </h2>
                 {% endif %}
@@ -98,7 +96,7 @@
         <button onclick="hideAddTaskForm('newTaskModal')">x</button>
         <h3> New Task </h3>
         <form method="POST" action="{{ url_for('add_task') }}">
-            <input readonly="true" id="liskeId" name="liskeId" value="{{response[1]}}" class="hiden"/>
+            <input readonly="true" id="liskeId" name="liskeId" value="{{response[1].id}}" class="hiden"/>
             <label for="taskName">Task Name</label>
             <input type="text" id="taskName" name="taskName"/>
             <label for="taskPriority">Task Proprity</label>
@@ -117,7 +115,7 @@
         <button onclick="hideAddTaskForm('newLiskeModal')">x</button>
         <h3>New Liske</h3>
         <form method="POST" action="{{ url_for('add_liske') }}">
-            <input readonly="true" id="currentLiske" name="currentLiske" value="{{response[1]}}" class="hiden"/>
+            <input readonly="true" id="currentLiske" name="currentLiske" value="{{response[1].id}}" class="hiden"/>
             <label for="liskeName">Liske name</label>
             <input type="text" id="liskeName" name="liskeName"/>
 

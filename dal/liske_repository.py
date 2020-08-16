@@ -10,7 +10,7 @@ def add_liske(liske_name):
 def get_liske_by_id(id):
     selected_liske = None
 
-    liske = db.query_db("select * from liske where id_liske = ?", (id,))
+    liske = db.query_db("select * from liske where liske_id = ?", (id,))
 
     if liske != None:
         for currentLiske in liske:
@@ -42,6 +42,18 @@ def get_liske_list():
 
 
     return liske_list
+
+def get_liske_id_list():
+    liske_list = []
+
+    cursor = db.query_db("select liske_id, liske_name from liske")
+
+    if cursor != None:
+        for current_liske in cursor:
+            liske_list.append(m_liske.liske(current_liske[0], current_liske[1]))
+
+    return liske_list
+
 
 def remove_liske(id):
     liske_deleted = False
